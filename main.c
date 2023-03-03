@@ -14,18 +14,55 @@ voir dans la methode main.
 
 
 
-
-
 // Ecrire la fonction generer(), elle prend en paramètre la grille et renvoie le nombre d'éléments non nuls
 
-// Ce lien vous sera utile : https://www.geeksforgeeks.org/pass-2d-array-parameter-c/
+int generer(int m , int n)
+    {
+    int i = 0;
 
+    for(i= 0; i < 10; i++)
+    {
+        printf("%d\n", 1 + rand()%9);
+    }
+
+}
+
+// Ce lien vous sera utile : https://www.geeksforgeeks.org/pass-2d-array-parameter-c/
+void print(int *arr, int m, int n)
+{
+    int i, j;
+    for (i = 0; i < m; i++)
+      for (j = 0; j < n; j++)
+        printf("%d ", *((arr+i*n) + j));
+}
+ 
+int grille()
+{
+    int arr[][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    int m = 3, n = 3;
+ 
+    // We can also use "print(&arr[0][0], m, n);"
+    print((int *)arr, m, n);
+    return 0;
+}
 
 /*Écrire une fonction saisir() qui demande à l’utilisateur de saisir au clavier les indices i et j et la valeur v à placer à l’emplacement (i,j).
 La fonction doit vérifier la validité des indices et de la valeur.
 Si la case n’est pas occupée, la valeur doit être placée dans la grille. remplissage est alors incrémentée*/
+int saisir()
+{ 
+    int i, j, v; 
 
 
+printf("Entrez trois nombres : "); 
+scanf("%d%d%d", &i, &j, &v); 
+}
+
+
+
+
+
+    
 /*
 Écrire la fonction verifierLigneColonne() qui prend en paramètre un numéro et un sens (HORIZ ou VERT)
 qui vérifie que la ligne ou la colonne (suivant les cas) numéro est bien remplie.
@@ -33,12 +70,48 @@ On pourra utiliser un tableau intermédiaire pour vérifier cela. La fonction re
  Les constantes HORIZ de valeur 0 et VERT de valeur 1 sont à définir.
 */
 
+bool verifierLigneColonne(int grille[9][9], int ligne, int colonne, int nombre)
+{
+    
+    for (int i = 0; i < 9; i++) {
+        if (grille[ligne][i] == nombre) {
+            return false;
+        }
+    }
+   
+    for (int i = 0; i < 9; i++) {
+        if (grille[i][colonne] == nombre) {
+            return false;
+        }
+    }
+}
+
+
 /*
 Écrire la fonction verifierRegion() qui prend en paramètre deux indices k et l qui correspondent à la région (k,l)
 et qui renvoie 1 si la région est correctement remplie, 0 sinon.
 */
+ int verifierRegion(int grille[9][9], int ligne, int colonne, int nombre)
+{
+    int regionLigne = (ligne / 3) * 3;
+    int regionColonne = (colonne / 3) * 3;
+    for (int i = regionLigne; i < regionLigne + 3; i++) {
+        for (int j = regionColonne; j < regionColonne + 3; j++) {
+            if (grille[i][j] == nombre) {
+                printf("0");
+            }
+            else printf("1");
+        
+        }
+    }
+}
+
+
 
 //Écrire la fonction verifierGrille() qui renvoie 1 si la grille est correctement remplie et 0 sinon
+
+int verifierGrille();
+
 
 
 //Écrire le programme principal, en supposant que la seule condition d’arrêt est la réussite du sudoku (ce test ne devra être fait que si nécessaire)
